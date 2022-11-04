@@ -1,20 +1,24 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-
-export default function App() {
+import React, { useState } from 'react';
+import { View, Text, Image, ScrollView, TextInput, Button } from 'react-native';
+import Display from './Display';
+const App = () => {
+  const [name,setName] =useState('');
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+    <View style={{
+      flex:1,
+      justifyContent:'center',
+      alignItems:'center'
+    }}>
+      <Image source={{uri:'https://reactnative.dev/docs/assets/p_cat2.png'}}
+      style={{
+        width:200,
+        height:200
+      }} ></Image>
+      <Display name={name}/>
+      <Button onPress={()=>alert("You clicked me!")} title="Click Me"></Button>
+      <TextInput onChangeText={(text)=>setName(text)} style={{height:40,width:150,border:'1px solid'}} defaultValue={name}></TextInput>      
     </View>
-  );
+  )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
